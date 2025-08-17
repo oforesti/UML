@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Terraria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container-interna">
+    
+    <div class="top-bar">
+      <button onclick="window.location.href='index.html'" class="back-btn">⬅ Voltar</button>
+      <h1>Terraria</h1>
+    </div>
+
+    <div class="conteudo">
+      <img class="cover" src="images/tiles/terraria.jpg" alt="Terraria" >
+      <p class="descricao">
+        Terraria é um jogo de aventura em 2D com exploração, mineração, construção e combate,
+        oferecendo infinitas possibilidades em um mundo cheio de inimigos e segredos.
+      </p>
+      
+      <button class="install-btn" onclick="instalarMods()">Instalar Mods</button>
+      <button class="start-btn" onclick="iniciarJogo()">Iniciar Jogo</button>
+    </div>
+  </div>
+
+  <script>
+    function instalarMods() {
+      alert("Instalar Mods - ação será conectada ao launcher");
+    }
+
+    function iniciarJogo() {
+      alert("Iniciar Jogo - ação será conectada ao launcher");
+    }
+  </script>
+</body>
+</html>

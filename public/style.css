@@ -1,0 +1,254 @@
+/* ============================== */
+/* RESET E ESTILOS BASE            */
+/* ============================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b0f0c url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+/* ============================== */
+/* SPLASH SCREEN                   */
+/* ============================== */
+
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b0f0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#splash img {
+  width: 300px; /* Logo grande no splash */
+  animation: pulse 1.3s infinite;
+}
+
+#splash.fade {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* ============================== */
+/* PÁGINA INICIAL                  */
+/* ============================== */
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Barra lateral */
+.sidebar {
+  background: rgba(15, 21, 18, 0.95);
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.logo {
+  width: 70px;
+  margin-bottom: 30px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin: 15px 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.menu-btn img {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 5px;
+}
+
+.menu-btn:hover,
+.menu-btn.active {
+  color: #1eff85;
+}
+
+/* Área principal */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Barra de busca */
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  margin-right: 10px;
+}
+
+.search-bar input::placeholder {
+  color: #ccc;
+}
+
+.catalog-btn {
+  background: #1eff85;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Grid de jogos - tiles aumentados */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 10px 0;
+}
+
+.game-tile {
+  background: rgba(26, 31, 28, 0.9);
+  border-radius: 14px;
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s, border 0.3s, box-shadow 0.3s;
+}
+
+.game-tile img {
+  width: 100%;
+  height: 240px; /* altura maior */
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.game-tile p {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.game-tile:hover {
+  transform: scale(1.05);
+  border: 3px solid #1eff85;
+  box-shadow: 0 0 20px rgba(30, 255, 133, 0.4);
+}
+
+/* ============================== */
+/* PÁGINAS INTERNAS (spiderman etc)*/
+/* ============================== */
+
+.container-interna {
+  background: rgba(11, 15, 12, 0.98);
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Barra superior interna */
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: rgba(15, 21, 18, 0.95);
+  backdrop-filter: blur(6px);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #1eff85;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-right: 15px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.back-btn:hover {
+  transform: scale(1.1);
+}
+
+.top-bar h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Conteúdo interno */
+.conteudo {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.cover {
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(30, 255, 133, 0.3);
+}
+
+.descricao {
+  margin: 25px auto;
+  max-width: 550px;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.4rem;
+}
+
+.install-btn,
+.start-btn {
+  background: #1eff85;
+  border: none;
+  color: #000;
+  padding: 12px 25px;
+  margin: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.install-btn:hover,
+.start-btn:hover {
+  background: #0dd36b;
+  transform: scale(1.05);
+}

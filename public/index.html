@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Launcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Splash -->
+  <div id="splash">
+    <img src="images/logo.png" alt="Logo Launcher">
+  </div>
+
+  <!-- Página principal -->
+  <div class="container">
+    <!-- Barra lateral -->
+    <div class="sidebar">
+      <img class="logo" src="images/logo.png" alt="Logo Launcher">
+      <button class="menu-btn active"><img src="images/icons/jogos.png" alt=""> Jogos</button>
+      <button class="menu-btn"><img src="images/icons/mods.png" alt=""> Mods</button>
+      <button class="menu-btn"><img src="images/icons/biblioteca.png" alt=""> Biblioteca</button>
+      <button class="menu-btn"><img src="images/icons/configuracoes.png" alt=""> Configurações</button>
+    </div>
+
+    <!-- Área principal -->
+    <div class="main">
+      <div class="search-bar">
+        <input type="text" placeholder="Buscar jogos">
+        <button class="catalog-btn">Catálogo</button>
+      </div>
+      <div class="grid">
+        <a href="spiderman.html" class="game-tile">
+          <img src="images/tiles/spiderman2.jpg">
+          <p>Spider-Man 2</p>
+        </a>
+        <a href="gta5.html" class="game-tile">
+          <img src="images/tiles/gta5.jpg">
+          <p>GTA V</p>
+        </a>
+        <a href="fifa23.html" class="game-tile">
+          <img src="images/tiles/fifa23.jpg">
+          <p>FIFA 23</p>
+        </a>
+        <a href="valheim.html" class="game-tile">
+          <img src="images/tiles/valheim.jpg">
+          <p>Valheim</p>
+        </a>
+        <a href="terraria.html" class="game-tile">
+          <img src="images/tiles/terraria.jpg">
+          <p>Terraria</p>
+        </a>
+        <a href="stardew.html" class="game-tile">
+          <img src="images/tiles/stardew.jpg">
+          <p>Stardew Valley</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script do splash -->
+  <script>
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      setTimeout(() => {
+        splash.classList.add('fade');
+        setTimeout(() => splash.style.display = 'none', 1000);
+      }, 2500); // tempo do splash visível (2,5s)
+    });
+  </script>
+</body>
+</html>

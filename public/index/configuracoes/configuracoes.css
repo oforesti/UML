@@ -10,8 +10,8 @@ body { font-family: Arial, Helvetica, sans-serif; line-height: 1.35; }
 /* ============================== */
 :root {
   /* ESCURO (padrão) */
-  --bg: #0b0f0c;
-  --bg-panel: rgba(15, 21, 18, 0.95);
+  --bg: #000000;
+  --bg-panel: rgba(16, 19, 17, 0.95);
   --text: #ffffff;
   --text-dim: #aaaaaa;
   --accent: #1eff85;
@@ -23,8 +23,8 @@ body { font-family: Arial, Helvetica, sans-serif; line-height: 1.35; }
 
 body.theme-light {
   /* CLARO */
-  --bg: #74d63b;
-  --bg-panel: rgba(66, 230, 61, 0.9);
+  --bg: #b7d8a3;
+  --bg-panel: rgba(167, 219, 165, 0.9);
   --text: #0e1116;
   --text-dim: #3a3f47;
   --accent: #0e9f6e;
@@ -93,7 +93,10 @@ body.theme-light {
 .configuracoes {
   margin-top: 2%;
   margin-left: 2%;
-  padding: 8px 12px;
+  padding: 8px 12px 8px;
+  color: #1eff85;
+
+  
 }
 
 .configuracoes h1 { font-size: 1.6rem; margin-bottom: 16px; }

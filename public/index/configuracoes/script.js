@@ -1,25 +1,27 @@
+// script.js
 (function () {
   const STORAGE_KEY = 'uml_theme'; // 'dark' | 'light'
   const btn = document.getElementById('btnTheme');
+  const themeText = document.getElementById('theme-text');
 
-  // 1) Preferência salva OU do sistema (fallback)
+  // Detecta a preferência salva ou a do sistema
   const saved = localStorage.getItem(STORAGE_KEY);
   const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   let theme = saved || (systemPrefersDark ? 'dark' : 'light');
 
   applyTheme(theme);
+  if (btn) btn.checked = theme === 'light';
 
-  // 2) Alternar no clique
-  btn?.addEventListener('click', () => {
-    theme = document.body.classList.contains('theme-light') ? 'dark' : 'light';
+  // Alterna o tema no clique
+  btn?.addEventListener('change', () => {
+    theme = btn.checked ? 'light' : 'dark';
     applyTheme(theme);
     localStorage.setItem(STORAGE_KEY, theme);
   });
 
-  // 3) Acompanhar mudança do sistema se o usuário não tiver fixado um tema
+  // Escuta a mudança no sistema
   if (!saved && window.matchMedia) {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    // Safari antigo usa .addListener; navegadores modernos usam .addEventListener
     const handler = (e) => {
       theme = e.matches ? 'dark' : 'light';
       applyTheme(theme);
@@ -31,13 +33,10 @@
   function applyTheme(mode) {
     const isLight = mode === 'light';
     document.body.classList.toggle('theme-light', isLight);
-
-    if (btn) {
-      btn.setAttribute('aria-pressed', String(isLight));
-      const icon = btn.querySelector('.icon');
-      const label = btn.querySelector('.label');
-      if (icon) icon.textContent = isLight ? '☀️' : '🌙';
-      if (label) label.textContent = isLight ? 'Modo claro' : 'Modo escuro';
+    if (themeText) {
+      // O texto agora é gerenciado pelo launcher.js
+      // Esta parte foi comentada para evitar conflito
+      // themeText.textContent = isLight ? 'Light Mode' : 'Dark Mode';
     }
   }
 })();

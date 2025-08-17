@@ -1,47 +1,77 @@
 /* ============================== */
-/* RESET E ESTILOS BASE            */
+/* RESET E ESTILOS BASE           */
 /* ============================== */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* ============================== */
+/* VARIÁVEIS DE TEMA              */
+/* ============================== */
+
+/* MODO ESCURO (PADRÃO) */
+:root {
+  --bg-color: #0b0f0c;
+  --bg-image: url('../images/background-darkmode.png');
+  --text-color: #ffffff;
+  --text-dim-color: #aaaaaa;
+  --accent-color: #1eff85;
+  --accent-text-color: #000000;
+  --panel-bg: rgba(15, 21, 18, 0.95);
+  --tile-bg: rgba(26, 31, 28, 0.9);
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-placeholder-color: #ccc;
+  --shadow-color: rgba(30, 255, 133, 0.4);
+}
+
+/* SOBRESCREVE AS VARIÁVEIS PARA O MODO CLARO */
+body.theme-light {
+  --bg-color: #f0f5f0;
+  --bg-image: url('../images/background-lightmode.png');
+  --text-color: #1a1a1a;
+  --text-dim-color: #555555;
+  --accent-color: #0e9f6e;
+  --accent-text-color: #ffffff;
+  --panel-bg: rgba(255, 255, 255, 0.9);
+  --tile-bg: #ffffff;
+  --input-bg: rgba(0, 0, 0, 0.05);
+  --input-placeholder-color: #888;
+  --shadow-color: rgba(14, 159, 110, 0.3);
 }
 
 body {
-  background: #0b0f0c url('../images/background.png') no-repeat center center fixed;
+  background: var(--bg-color) var(--bg-image) no-repeat center center fixed;
   background-size: cover;
-  color: #fff;
+  color: var(--text-color);
+  transition: background-color 0.4s ease;
 }
 
 /* ============================== */
-/* SPLASH SCREEN                   */
+/* SPLASH SCREEN                  */
 /* ============================== */
-
 #splash {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #0b0f0c;
+  background: var(--bg-color); /* Usa variável */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
-
 #splash img {
-  width: 300px; /* Logo grande no splash */
+  width: 300px;
   animation: pulse 1.3s infinite;
 }
-
 #splash.fade {
   opacity: 0;
   transition: opacity 1s ease;
 }
-
 @keyframes pulse {
   0% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.15); opacity: 1; }
@@ -49,9 +79,8 @@ body {
 }
 
 /* ============================== */
-/* PÁGINA INICIAL                  */
+/* PÁGINA INICIAL                 */
 /* ============================== */
-
 .container {
   display: flex;
   height: 100vh;
@@ -59,24 +88,22 @@ body {
 
 /* Barra lateral */
 .sidebar {
-  background: rgba(15, 21, 18, 0.95);
+  background: var(--panel-bg); /* Usa variável */
   width: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
-
 .logo {
   width: 70px;
   margin-bottom: 30px;
 }
-
 .menu-btn {
   background: none;
   border: none;
-  color: #aaa;
+  color: var(--text-dim-color); /* Usa variável */
   font-size: 0.9rem;
   margin: 15px 0;
   cursor: pointer;
@@ -86,16 +113,14 @@ body {
   transition: color 0.3s;
   text-decoration: none;
 }
-
 .menu-btn img {
-  width: 34px;
-  height: 34px;
-  margin-bottom: 5px;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 5px; /* Adiciona um espaço abaixo da imagem */
 }
-
 .menu-btn:hover,
 .menu-btn.active {
-  color: #1eff85;
+  color: var(--accent-color); /* Usa variável */
 }
 
 /* Área principal */
@@ -110,23 +135,21 @@ body {
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
 .search-bar input {
   flex: 1;
   padding: 10px;
   border-radius: 6px;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: var(--input-bg); /* Usa variável */
+  color: var(--text-color); /* Usa variável */
   margin-right: 10px;
 }
-
 .search-bar input::placeholder {
-  color: #ccc;
+  color: var(--input-placeholder-color); /* Usa variável */
 }
-
 .catalog-btn {
-  background: #1eff85;
+  background: var(--accent-color); /* Usa variável */
+  color: var(--accent-text-color); /* Usa variável */
   border: none;
   padding: 8px 15px;
   border-radius: 6px;
@@ -134,122 +157,37 @@ body {
   font-weight: bold;
 }
 
-/* Grid de jogos - tiles aumentados */
+/* Grid de jogos */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 30px;
   padding: 10px 0;
 }
-
 .game-tile {
-  background: rgba(26, 31, 28, 0.9);
+  background: var(--tile-bg); /* Usa variável */
   border-radius: 14px;
   text-align: center;
   padding: 15px;
   cursor: pointer;
   text-decoration: none;
-  color: #fff;
+  color: var(--text-color); /* Usa variável */
   transition: transform 0.2s, border 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 .game-tile img {
   width: 100%;
-  height: 240px; /* altura maior */
+  height: 240px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 8px;
 }
-
 .game-tile p {
   font-size: 1.1rem;
   font-weight: bold;
 }
-
 .game-tile:hover {
   transform: scale(1.05);
-  border: 3px solid #1eff85;
-  box-shadow: 0 0 20px rgba(30, 255, 133, 0.4);
-}
-
-/* ============================== */
-/* PÁGINAS INTERNAS (spiderman etc)*/
-/* ============================== */
-
-.container-interna {
-  background: rgba(11, 15, 12, 0.98);
-  height: 100vh;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Barra superior interna */
-.top-bar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  background: rgba(15, 21, 18, 0.95);
-  backdrop-filter: blur(6px);
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: #1eff85;
-  font-size: 1.2rem;
-  cursor: pointer;
-  margin-right: 15px;
-  font-weight: bold;
-  transition: transform 0.2s;
-}
-
-.back-btn:hover {
-  transform: scale(1.1);
-}
-
-.top-bar h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Conteúdo interno */
-.conteudo {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.cover {
-  width: 320px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(30, 255, 133, 0.3);
-}
-
-.descricao {
-  margin: 25px auto;
-  max-width: 550px;
-  font-size: 1rem;
-  color: #ccc;
-  line-height: 1.4rem;
-}
-
-.install-btn,
-.start-btn {
-  background: #1eff85;
-  border: none;
-  color: #000;
-  padding: 12px 25px;
-  margin: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.install-btn:hover,
-.start-btn:hover {
-  background: #0dd36b;
-  transform: scale(1.05);
+  border: 3px solid var(--accent-color); /* Usa variável */
+  box-shadow: 0 0 20px var(--shadow-color); /* Usa variável */
 }

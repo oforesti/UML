@@ -5,42 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Launcher • Configurações</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="../configuracoes/configuracoes.css">
+  <link rel="stylesheet" href="./configuracoes.css">
   <link rel="icon" href="../../images/logo.png" type="image/png">
 </head>
 <body>
   <div class="container">
-    <!-- Barra lateral -->
     <aside class="sidebar" aria-label="Menu lateral">
       <img class="logo" src="../../images/logo.png" alt="Logo Launcher" />
       <a href="../index.html" class="menu-btn" aria-current="page">
-        <img src="../../images/icons/jogos.png" alt="" /> Jogos
+        <img src="../../images/icons/jogos.png" alt="" /> <span>Jogos</span>
       </a>
       <button class="menu-btn" type="button">
-        <img src="../../images/icons/biblioteca.png" alt="" /> Biblioteca
+        <img src="../../images/icons/biblioteca.png" alt="" /> <span>Biblioteca</span>
       </button>
-      <a href="../configuracoes/configuracoes.html" class="menu-btn active">
-        <img src="../../images/icons/configuracoes.png" alt="" /> Configurações
+      <a href="configuracoes.html" class="menu-btn active">
+        <img src="../../images/icons/configuracoes.png" alt="" /> <span>Configurações</span>
       </a>
     </aside>
 
-    <!-- Conteúdo -->
-    <main class="configuracoes">
+    <main class="content">
       <h1>Configurações</h1>
 
-      <!-- Preferências -->
-      <section class="botaopreferencia" aria-labelledby="titulo-preferencias">
-        <h2 id="titulo-preferencias" class="sr-only">Preferências</h2>
-        <button id="btnTheme" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema claro/escuro" type="button">
-          <span class="icon" aria-hidden="true">🌙</span>
-          <span class="label">Modo escuro</span>
-        </button>
-      </section>
+      <div class="settings-container">
+        <div class="setting-row">
+          <label for="btnTheme">Aparência</label>
+          <label class="switch">
+            <input type="checkbox" id="btnTheme" aria-label="Alternar tema claro/escuro">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        </div>
     </main>
   </div>
 
-  <!-- JS -->
-  <script src="../configuracoes/script.js"></script>
-</body>
+  <script src="./script.js"></script>
+  
+  </body>
 </html>

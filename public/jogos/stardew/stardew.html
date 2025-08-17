@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Stardew Valley</title>
+  <link rel="stylesheet" href="../../jogos/stardew/stardew.css">
+</head>
+<body>
+  <div class="container-interna">
+    <!-- Topo -->
+    <div class="top-bar">
+      <button onclick="window.location.href='../../index/index.html'" class="back-btn">⬅ Voltar</button>
+      <h1>Stardew Valley</h1>
+    </div>
+
+    <div class="conteudo">
+      <img class="cover" src="../../images/tiles/stardew.png" alt="Stardew Valley">
+      <p class="descricao">
+        Gerencie sua fazenda, faça amizades em Pelican Town e personalize o jogo com mods via SMAPI.
+      </p>
+
+      <div class="actions">
+        <button class="mini" onclick="selectGameFolder()">Selecionar pasta do jogo</button>
+        <button class="mini" onclick="selectModsFolder()">Selecionar pasta de mods (origem)</button>
+      </div>
+
+      <div class="mods-box">
+        <h3>Mods detectados</h3>
+        <div id="mods-list" class="mods-list v-scroll"></div>
+      </div>
+
+      <div class="actions">
+        <button class="install-btn" onclick="installMods()">Instalar Mods</button>
+        <button class="start-btn" onclick="startGame()">Iniciar Jogo</button>
+      </div>
+
+      <small class="hint">
+        Dica: a pasta de destino é <code>.../Stardew Valley/Mods</code>. Se SMAPI estiver instalado, o launcher usará
+        <code>StardewModdingAPI.exe</code> automaticamente.
+      </small>
+    </div>
+  </div>
+
+  <!-- Conecta com o script do renderer -->
+  <script src="stardew.js"></script>
+</body>
+</html>

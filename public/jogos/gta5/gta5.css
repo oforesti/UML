@@ -1,0 +1,99 @@
+/* ============================== */
+/* RESET E ESTILOS BASE            */
+/* ============================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b0f0c url('../images/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+/* ============================== */
+/* PÁGINAS INTERNAS (GTA V)        */
+/* ============================== */
+
+.container-interna {
+  background: rgba(11, 15, 12, 0.98);
+  height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Barra superior */
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(6px);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #ff4040;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-right: 15px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.back-btn:hover {
+  transform: scale(1.1);
+}
+
+.top-bar h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Conteúdo */
+.conteudo {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.cover {
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 64, 64, 0.6);
+}
+
+.descricao {
+  margin: 25px auto;
+  max-width: 550px;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.4rem;
+}
+
+/* Botões */
+.install-btn,
+.start-btn {
+  background: #ff4040;
+  border: none;
+  color: #fff;
+  padding: 12px 25px;
+  margin: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.install-btn:hover,
+.start-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}

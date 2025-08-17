@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Launcher • Configurações</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../configuracoes/configuracoes.css">
+  <link rel="icon" href="../../images/logo.png" type="image/png">
+</head>
+<body>
+  <div class="container">
+    <!-- Barra lateral -->
+    <aside class="sidebar" aria-label="Menu lateral">
+      <img class="logo" src="../../images/logo.png" alt="Logo Launcher" />
+      <a href="../index.html" class="menu-btn" aria-current="page">
+        <img src="../../images/icons/jogos.png" alt="" /> Jogos
+      </a>
+      <button class="menu-btn" type="button">
+        <img src="../../images/icons/biblioteca.png" alt="" /> Biblioteca
+      </button>
+      <a href="../configuracoes/configuracoes.html" class="menu-btn active">
+        <img src="../../images/icons/configuracoes.png" alt="" /> Configurações
+      </a>
+    </aside>
+
+    <!-- Conteúdo -->
+    <main class="configuracoes">
+      <h1>Configurações</h1>
+
+      <!-- Preferências -->
+      <section class="botaopreferencia" aria-labelledby="titulo-preferencias">
+        <h2 id="titulo-preferencias" class="sr-only">Preferências</h2>
+        <button id="btnTheme" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema claro/escuro" type="button">
+          <span class="icon" aria-hidden="true">🌙</span>
+          <span class="label">Modo escuro</span>
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="../configuracoes/script.js"></script>
+</body>
+</html>

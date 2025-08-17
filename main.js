@@ -16,7 +16,7 @@ function createWindow() {
   });
 
   // Sempre abre na tela inicial (index.html)
-  mainWindow.loadFile(path.join(__dirname, 'public', 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, 'public', 'index', 'index.html'));
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();

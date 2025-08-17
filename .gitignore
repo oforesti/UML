@@ -1,0 +1,22 @@
+# Ignora a pasta de dependências
+node_modules/
+
+# Ignora o banco de dados local
+*.db
+
+# Ignora variáveis de ambiente
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Cache do sistema e editores
+.DS_Store
+.vscode/
+.idea/
+
+# Arquivos temporários
+*.tmp
+*.swp

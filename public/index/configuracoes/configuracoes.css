@@ -23,8 +23,8 @@ body { font-family: Arial, Helvetica, sans-serif; line-height: 1.35; }
 
 body.theme-light {
   /* CLARO */
-  --bg: #ffffff;
-  --bg-panel: rgba(255, 255, 255, 0.9);
+  --bg: #74d63b;
+  --bg-panel: rgba(66, 230, 61, 0.9);
   --text: #0e1116;
   --text-dim: #3a3f47;
   --accent: #0e9f6e;
@@ -37,11 +37,18 @@ body.theme-light {
 /* ============================== */
 /* BACKGROUND E LAYOUT            */
 /* ============================== */
+/* modo escuro (padrão) */
 body {
-  background: var(--bg) url('../../images/background.png') no-repeat center center fixed;
+  background: var(--bg) url('../../images/background-darkmode.png') no-repeat center center fixed;
   background-size: cover;
-  color: var(--text);
 }
+
+/* modo claro */
+body.theme-light {
+  background: var(--bg) url('../../images/background-lightmode.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
 
 .container { display: flex; height: 100vh; }
 

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Splash Animation</title>
+<style>
+  :root{--bg0:#050a08;--bg1:#07140e;--bg2:#0b321d;--neon:#1aff87;}
+  html,body{height:100%;margin:0;overflow:hidden;background:radial-gradient(circle,#0b321d 0%,#07140e 50%,#050a08 100%)}
+  canvas{width:100vw;height:100vh;display:block}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+/* ======= CONFIG ======= */
+const LOGO_SRC = 'logo.png';
+const T_ZOOM   = 2.0;   // tempo fase 1
+const T_DIVE   = 0.9;   // tempo fase 2
+const T_FADE   = 0.6;   // tempo fade
+const REDIRECT = '../index/home.html'
+const TRAIL_LEN = 40;
+/* ====================== */
+
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d',{alpha:true});
+let W,H,DPR; function size(){DPR=Math.min(devicePixelRatio||1,2);W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR;cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';}
+addEventListener('resize',size,{passive:true}); size();
+ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+
+const logo=new Image(); logo.src=LOGO_SRC; let logoReady=false; logo.onload=()=>logoReady=true;
+
+// === ÁUDIO ===
+const amb   = new Audio('../sounds/ambiente.mp3');
+const woosh = new Audio('../sounds/woosh.mp3');
+const boom  = new Audio('../sounds/boom.mp3');
+amb.loop=true; amb.volume=0.4;
+
+// forçar autoplay
+window.addEventListener('load',()=>{
+  amb.play().catch(()=>{});
+});
+
+// helpers
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const easeOutCubic=t=>1-Math.pow(1-t,3);
+const easeInExpo=t=>(t===0?0:Math.pow(2,10*(t-1)));
+const lerp=(a,b,t)=>a+(b-a)*t;
+
+let t=0,phase=0; let trail=[];
+
+function bezier(p0,p1,p2,p3,u){
+  const v=1-u;
+  return {x:v*v*v*p0.x+3*v*v*u*p1.x+3*v*u*u*p2.x+u*u*u*p3.x,
+          y:v*v*v*p0.y+3*v*v*u*p1.y+3*v*u*u*p2.y+u*u*u*p3.y};
+}
+function drawBG(glow){
+  const g=ctx.createRadialGradient(W/2,H/2,Math.min(W,H)*.1,W/2,H/2,Math.max(W,H)*.7);
+  g.addColorStop(0,'rgba(9,48,30,.92)'); g.addColorStop(1,'rgba(5,10,8,1)');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  const g2=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.min(W,H)*.55);
+  g2.addColorStop(0,`rgba(26,255,135,${glow})`); g2.addColorStop(1,'rgba(26,255,135,0)');
+  ctx.fillStyle=g2; ctx.fillRect(0,0,W,H);
+}
+function drawLogo(scale){
+  const s=Math.min(W,H)*0.42*scale,x=W/2-s/2,y=H/2-s/2;
+  ctx.save(); ctx.filter=`drop-shadow(0 ${6*DPR}px ${24*DPR}px rgba(26,255,135,.18))`;
+  if(logoReady) ctx.drawImage(logo,x,y,s,s);
+  ctx.restore();
+}
+function drawRocket(x,y,a,sc){
+  ctx.save(); ctx.translate(x,y); ctx.rotate(a); ctx.scale(sc,sc);
+  ctx.fillStyle='#1aff87';
+  ctx.beginPath(); ctx.moveTo(0,-12); ctx.quadraticCurveTo(10,-6,12,0); ctx.quadraticCurveTo(10,6,0,12);
+  ctx.quadraticCurveTo(-10,6,-12,0); ctx.quadraticCurveTo(-10,-6,0,-12); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+function drawTrail(){
+  for(let i=1;i<trail.length;i++){
+    const p=trail[i-1],q=trail[i];const a=i/trail.length;
+    ctx.strokeStyle=`rgba(26,255,135,${0.035+a*0.22})`;
+    ctx.lineWidth=(4+i*1.1)*DPR;
+    ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+  }
+}
+
+let last=performance.now();
+function frame(now){
+  const dt=(now-last)/1000; last=now; t+=dt;
+  if(phase===0){
+    const k=clamp(t/T_ZOOM,0,1);
+    const zoom=1+easeInExpo(k)*3.0;
+    drawBG(.18+.35*k); drawLogo(zoom);
+    const ang=-Math.PI*0.55+easeOutCubic(k)*Math.PI*0.85;
+    const rx=Math.min(W,H)*0.19, ry=rx*0.72;
+    const cx=W/2+Math.cos(ang)*rx, cy=H/2+Math.sin(ang)*ry;
+    trail.unshift({x:cx,y:cy}); trail=trail.slice(0,TRAIL_LEN);
+    drawTrail(); drawRocket(cx,cy,ang+Math.PI/2,DPR*1.05);
+    if(k>=1){phase=1;t=0; woosh.play().catch(()=>{});}
+  }
+  else if(phase===1){
+    const k=clamp(t/T_DIVE,0,1);
+    const zoom=4.0+easeInExpo(k)*5.0;
+    drawBG(.6); drawLogo(zoom);
+    const p0=trail[0]??{x:W/2,y:H/2};
+    const p1={x:lerp(p0.x,W*0.75,.5),y:lerp(p0.y,H*0.30,.5)};
+    const p2={x:W*0.62,y:H*0.55}, p3={x:W/2,y:H/2};
+    const pos=bezier(p0,p1,p2,p3,easeOutCubic(k));
+    const ang=Math.atan2(p3.y-pos.y,p3.x-pos.x);
+    drawTrail(); drawRocket(pos.x,pos.y,ang,DPR*1.2+k*0.6);
+    ctx.save(); ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath(); const r=Math.max(W,H)*(0.10+0.95*k); ctx.arc(W/2,H/2,r,0,Math.PI*2); ctx.fill(); ctx.restore();
+    if(k>=1){phase=2;t=0; boom.play().catch(()=>{});}
+  }
+  else {
+    const k=clamp(t/T_FADE,0,1);
+    ctx.fillStyle=`rgba(0,0,0,${k})`; ctx.fillRect(0,0,W,H);
+    if(k>=1){ window.location.href = REDIRECT; }
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
